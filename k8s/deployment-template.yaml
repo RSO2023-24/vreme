@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vreme-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vreme
+  template:
+    metadata:
+      labels:
+        app: vreme
+    spec:
+      containers:
+        - image: pockar/vreme:latest
+          name: vreme
+          env:
+            - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+              value: jdbc:postgresql://cornelius.db.elephantsql.com:5432/mfyrfjbx
+            - name: KUMULUZEE_DATASOURCES0_USERNAME
+              value: mfyrfjbx
+            - name: KUMULUZEE_DATASOURCES0_PASSWORD
+              #value:
+              valueFrom: #use Kubernetes secret for storing the password
+               # secretKeyRef: 
+                ## key: #to be added
+          ports:
+            - containerPort: 8080
+              name: server
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vreme
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: vreme

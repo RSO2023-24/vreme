@@ -26,7 +26,7 @@ spec:
                # secretKeyRef: 
                 ## key: #to be added
           ports:
-            - containerPort: 8080
+            - containerPort: 8084
               name: server
 
 ---
@@ -38,7 +38,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 8080
+    - port: 8084
       protocol: TCP
       targetPort: server
   selector:

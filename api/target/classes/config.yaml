@@ -1,0 +1,15 @@
+kumuluzee:
+  name: vreme-service
+  env:
+    name: dev
+  version: 1.0.0
+  server:
+    base-url: http://localhost:8084
+    http:
+      port: 8084
+  datasources:
+    - jndi-name: jdbc/vremeDS
+      connection-url: jdbc:postgresql://localhost:5432/vreme
+      username: dbuser
+      password: postgres
+

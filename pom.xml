@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>si.fri.rso.vreme</groupId>
-    <artifactId>image-catalog</artifactId>
+    <artifactId>vreme</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -42,6 +42,11 @@
                 <artifactId>kumuluzee-rest-core</artifactId>
                 <version>${kumuluzee-rest.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+                <version>${kumuluzee.version}</version>
+            </dependency>
 
 
             <dependency>
@@ -70,12 +75,12 @@
 
             <dependency>
                 <groupId>si.fri.rso.vreme</groupId>
-                <artifactId>image-catalog-api</artifactId>
+                <artifactId>vreme-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>si.fri.rso.vreme</groupId>
-                <artifactId>image-catalog-services</artifactId>
+                <artifactId>vreme-services</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

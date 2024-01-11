@@ -24,6 +24,7 @@
         <kumuluzee-rest.version>1.5.1</kumuluzee-rest.version>
         <kumuluzee-openapi-mp.version>1.4.0</kumuluzee-openapi-mp.version>
         <kumuluzee-config-mp.version>2.0.0</kumuluzee-config-mp.version>
+        <kumuluzee-logs.version>1.4.6</kumuluzee-logs.version>
         <postgresql.version>42.6.0</postgresql.version>
     </properties>
 
@@ -82,6 +83,24 @@
                 <groupId>si.fri.rso.vreme</groupId>
                 <artifactId>vreme-services</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.logs</groupId>
+                <artifactId>kumuluzee-logs-log4j2</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+            
+            <dependency>
+                <artifactId>kumuluzee-logs-log4j2</artifactId>
+                <groupId>com.kumuluz.ee.logs</groupId>
+                <version>${kumuluzee-logs.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.asynchttpclient</groupId>
+                <artifactId>async-http-client</artifactId>
+                <version>2.12.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

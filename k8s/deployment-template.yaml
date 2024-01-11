@@ -15,19 +15,16 @@ spec:
       containers:
         - image: pockar/vreme:latest
           name: vreme
-          env:
-            - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
-              value: jdbc:postgresql://cornelius.db.elephantsql.com:5432/mfyrfjbx
-            - name: KUMULUZEE_DATASOURCES0_USERNAME
-              value: mfyrfjbx
-            - name: KUMULUZEE_DATASOURCES0_PASSWORD
-              #value:
-              valueFrom: #use Kubernetes secret for storing the password
-               # secretKeyRef: 
-                ## key: #to be added
           ports:
             - containerPort: 8084
               name: server
+          resources:
+            limits:
+              cpu: "1"
+              memory: "500Mi"
+            requests:
+              cpu: "0.5"
+              memory: "200Mi"
 
 ---
 
@@ -36,7 +33,7 @@ kind: Service
 metadata:
   name: vreme
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8084
       protocol: TCP

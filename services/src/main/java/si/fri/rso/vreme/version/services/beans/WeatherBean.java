@@ -3,14 +3,12 @@ package si.fri.rso.vreme.version.services.beans;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.asynchttpclient.*;
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.IOException;
 
 @ApplicationScoped
 public class WeatherBean {
@@ -18,19 +16,24 @@ public class WeatherBean {
     @Inject
     private ObjectMapper objectMapper;
 
-    private static final String API_KEY = "your_api_key";
-    private static final String WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s";
+    private static final String API_KEY = "0a2a5e4ebbmshbb4dcbbf827d3f3p1b165ajsn37521aec4877";
+    private static final String WEATHER_API_URL = "https://open-weather13.p.rapidapi.com/city/latlon/%s/%s";
 
     public JsonNode getWeather(double latitude, double longitude) throws IOException {
-        Client client = ClientBuilder.newClient();
-        String url = String.format(WEATHER_API_URL, latitude, longitude, API_KEY);
+        AsyncHttpClient client = new DefaultAsyncHttpClient();
+        String url = String.format(WEATHER_API_URL, latitude, longitude);
 
-        Response response = client.target(url)
-                .request(MediaType.APPLICATION_JSON)
-                .get();
+        CompletableFuture<Response> future = client.prepareGet(url)
+                .addHeader("X-RapidAPI-Key", API_KEY)
+                .addHeader("X-RapidAPI-Host", "open-weather13.p.rapidapi.com")
+                .execute()
+                .toCompletableFuture();
 
-        String json = response.readEntity(String.class);
         client.close();
+
+        Response response = future.join(); // Use join() instead of get()
+
+        String json = response.getResponseBody();
 
         JsonNode rootNode = objectMapper.readTree(json);
 

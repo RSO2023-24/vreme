@@ -1,10 +1,12 @@
 package si.fri.rso.vreme.version.api.v1.resources;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
 import java.io.IOException;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+
 import si.fri.rso.vreme.version.services.beans.WeatherBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,15 +27,10 @@ public class VremeResource {
     @Path("/current")
     @Operation(description = "Get current weather for a location.")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Current weather data.")
+            @APIResponse(responseCode = "200", description = "Current weather data.")
     })
-    public Response getWeather(@QueryParam("lat") double latitude, @QueryParam("lon") double longitude) {
-        try {
-            JsonNode weatherData = weatherBean.getWeather(latitude, longitude);
-            return Response.ok(weatherData).build();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        public Response getWeather(@QueryParam("lat") double latitude, @QueryParam("lon") double longitude) throws IOException {
+        JsonNode weatherData = weatherBean.getWeather(latitude, longitude);
+        return Response.ok(weatherData).build();
         }
-    }
 }

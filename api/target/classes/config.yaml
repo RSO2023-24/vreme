@@ -7,11 +7,6 @@ kumuluzee:
     base-url: http://localhost:8084
     http:
       port: 8084
-  datasources:
-    - jndi-name: jdbc/vremeDS
-      connection-url: jdbc:postgresql://localhost:5432/vreme
-      username: dbuser
-      password: postgres
 logs:
   config-file: '<?xml version="1.0" encoding="UTF-8"?>
                         <Configuration name="Pohodnik">

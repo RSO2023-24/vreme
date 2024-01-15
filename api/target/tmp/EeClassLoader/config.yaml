@@ -1,0 +1,29 @@
+kumuluzee:
+  name: vreme-service
+  env:
+    name: dev
+  version: 1.0.0
+  server:
+    base-url: http://localhost:8086
+    http:
+      port: 8086
+logs:
+  config-file: '<?xml version="1.0" encoding="UTF-8"?>
+                        <Configuration name="Pohodnik">
+                            <Appenders>
+                                <Console name="console" target="SYSTEM_OUT">
+                                    <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                                </Console>
+                                <Socket name="logstash" host="70b30c4c-a54e-476a-a5ea-42d916818926-ls.logit.io"
+                                port="21052" protocol="tcp">
+                                    <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
+                                </Socket>
+                            </Appenders>
+                            <Loggers>
+                                <!-- Default logger -->
+                                <Root level="all">
+                                    <AppenderRef ref="console" level="info" />
+                                    <AppenderRef ref="logstash" level="debug" />
+                                </Root>
+                            </Loggers>
+                        </Configuration>'

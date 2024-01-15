@@ -1,2 +1,3 @@
 si\fri\rso\vreme\version\api\v1\VremeApplication.class
+si\fri\rso\vreme\version\api\v1\interceptor\LogContextInterceptor.class
 si\fri\rso\vreme\version\api\v1\resources\VremeResource.class

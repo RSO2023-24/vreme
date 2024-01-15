@@ -12,7 +12,7 @@ mvn clean package
 cd api/target
 java -jar vreme-api-1.0.0-SNAPSHOT.jar
 ```
-Available at: localhost:8084/v1/images
+Available at: localhost:8086/v1/weather
 
 ## Docker commands
 ```bash
@@ -28,7 +28,7 @@ docker network rm rso
 docker network create rso
 docker run -d --name pg-vreme -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=vreme -p 5432:5432 --network rso postgres:13
 docker inspect pg-vreme
-docker run -p 8084:8084 --network rso -e KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://pg-vreme:5432/vreme prporso/vreme:2022-11-14-12-45-13
+docker run -p 8086:8086 --network rso -e KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://pg-vreme:5432/vreme prporso/vreme:2022-11-14-12-45-13
 ```
 
 ## Kubernetes

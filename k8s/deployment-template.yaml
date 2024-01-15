@@ -16,7 +16,7 @@ spec:
         - image: pockar/vreme:latest
           name: vreme
           ports:
-            - containerPort: 8084
+            - containerPort: 8086
               name: server
           resources:
             limits:
@@ -35,7 +35,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8084
+    - port: 8086
       protocol: TCP
       targetPort: server
   selector:
